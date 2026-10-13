@@ -29,7 +29,7 @@ export function InfoCoat({ onContinue }: { onContinue: () => void }) {
   );
 }
 
-/** 5 s loading in the HERO loader style (blue bar with paw), then advances by itself. */
+/** 8 s loading in the HERO loader style (blue bar with paw), then advances by itself. */
 export function LoadingBehavior({ a, onDone }: { a: Answers; onDone: () => void }) {
   const [progress, setProgress] = useState(0);
   const done = useRef(onDone);
@@ -43,7 +43,7 @@ export function LoadingBehavior({ a, onDone }: { a: Answers; onDone: () => void 
     let finished = false;
     const tick = (t: number) => {
       if (start === null) start = t;
-      const p = Math.min(((t - start) / T.hero.loader) * 100, 100);
+      const p = Math.min(((t - start) / T.behaviorLoader) * 100, 100);
       setProgress(p);
       if (p < 100) raf = requestAnimationFrame(tick);
       else if (!finished) {

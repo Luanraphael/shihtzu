@@ -19,6 +19,9 @@ export const T = {
     loader: 5000,
   },
 
+  /** Behaviour loading after the orbit: 8 s (5 s + 3 s requested), then advances at 100%. */
+  behaviorLoader: 8000,
+
   creating: {
     /**
      * Progress curve of each bar as [ms since the bar started, %]. Bars run one after another and
