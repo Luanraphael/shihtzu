@@ -1,0 +1,110 @@
+:root {
+  /* Briefing §2: page background is pure white everywhere. */
+  --bg: #ffffff;
+
+  /* Briefing §2: theme purple of the reference → blue #2E60A6 (+ derived states). */
+  --brand-primary: #2e60a6;
+  --brand-hover: #27528e; /* reference hover #9D50D5 is ~15% darker than #BA61FE */
+  --brand-active: #1e406f; /* reference active #7D39AE */
+  --brand-disabled: #a6bcdb; /* reference disabled #D7B0F4 */
+  --brand-soft: #e6eef8;
+  --brand-glow: rgba(46, 96, 166, 0.45);
+
+  /* Neutrals measured on the reference (kept as-is). */
+  --text: #231e19;
+  --text-2: #7b766f;
+  --placeholder: #aaa59f;
+  --line: #ece5d8;
+  --surface: #f3eddf;
+  --surface-hover: #e5ded1;
+  --surface-active: #d1cabc;
+  --track: #e3ddd2;
+  --option-border: #f7e7d6;
+  --option-border-hover: #e0d4c6;
+  --input-line: #cfc2b1;
+  --input-line-focus: #ab9a89;
+
+  /* Functional colours of the reference (not theme colour → unchanged). */
+  --orange: #ff8e00;
+  --green: #00a36f;
+  --error: #f83800;
+
+  --font-rounded: "SF Pro Rounded", var(--font-nunito), Nunito, Roboto, sans-serif;
+  --font-base: "SF Pro", -apple-system, Roboto, sans-serif;
+
+  --col: 465px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+}
+
+body {
+  color: var(--text);
+  font-family: var(--font-base);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  font: inherit;
+  border: 0;
+  outline: none;
+  background: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

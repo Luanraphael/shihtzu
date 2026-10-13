@@ -1,0 +1,352 @@
+/* Values transcribed from the reference CSS (smartHeader, smartProgressBar, withOneOption,
+   multiOptionsV1/V2, ActionBarWithSkip, title). Theme purple → var(--brand-*), cream bg → white. */
+
+/* ---------- header (smartHeader) ---------- */
+.headerWrapper {
+  background: var(--bg);
+  width: 100%;
+  flex: none;
+}
+.header {
+  align-items: center;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  height: 72px;
+  min-height: 72px;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: var(--col);
+  padding: 15px 20px;
+  position: relative;
+  width: 100%;
+}
+.backButton {
+  align-items: center;
+  background-color: var(--surface);
+  border-radius: 12px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  left: 20px;
+  min-width: 40px;
+  position: absolute;
+  top: 16px;
+  width: 40px;
+}
+.backButton:hover {
+  background-color: var(--surface-hover);
+}
+.backButton:active {
+  background-color: var(--surface-active);
+}
+
+/* ---------- logo (reference logo slot is 32 px high) ---------- */
+.logoImg {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+.logo {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  height: 32px;
+  min-width: 132px;
+  justify-content: center;
+}
+.logoMark {
+  align-items: center;
+  background: var(--brand-primary);
+  border-radius: 9px;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+  flex: none;
+}
+.logoText {
+  color: var(--text);
+  font-family: var(--font-rounded);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+/* ---------- progress (smartProgressBar) ---------- */
+.progress {
+  align-items: center;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+.progressTitle {
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.progressBar {
+  display: flex;
+  gap: 6px;
+  max-width: 260px;
+  width: 100%;
+}
+.progressSection {
+  background: var(--track);
+  border-radius: 6px;
+  flex: 1 1;
+  height: 6px;
+  overflow: hidden;
+}
+.progressFill {
+  background: var(--brand-primary);
+  border-radius: 6px;
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+/* ---------- titles ---------- */
+.title {
+  color: var(--text);
+  font-family: var(--font-rounded);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  line-height: 28px;
+  text-align: center;
+  word-break: break-word;
+}
+.title span {
+  color: var(--brand-primary);
+}
+.subtitle {
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.051px;
+  line-height: 22px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ---------- step body ---------- */
+.step {
+  padding: 0 20px 150px;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+/* ---------- option (withOneOption / multiOptionsV1) ---------- */
+.option {
+  align-items: center;
+  background-color: var(--bg);
+  border-radius: 16px;
+  box-shadow: 0 0 0 2px var(--option-border);
+  color: var(--text);
+  display: flex;
+  font-family: var(--font-rounded);
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: flex-start;
+  letter-spacing: -0.4px;
+  line-height: 20px;
+  margin-bottom: 12px;
+  min-height: 60px;
+  padding: 10px 60px 10px 16px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  transition: box-shadow 0.1s;
+}
+.option:hover {
+  box-shadow: 0 0 0 2px var(--option-border-hover);
+}
+.optionSelected,
+.optionSelected:hover {
+  box-shadow: 0 0 0 3px var(--brand-primary);
+}
+.iconWrapper {
+  align-items: center;
+  color: var(--text-2);
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  margin-right: 12px;
+  min-width: 20px;
+  width: 20px;
+}
+.iconLarge {
+  border-radius: 50%;
+  flex: none;
+  height: 48px;
+  margin: -4px 12px -4px -4px;
+  overflow: hidden;
+  width: 48px;
+  background: radial-gradient(circle at 50% 35%, #f4f7fc, #e3ebf6);
+}
+.iconLarge img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  width: 100%;
+}
+/* empty circle of multi-select options */
+.multi::before {
+  border: 2px solid var(--option-border);
+  border-radius: 24px;
+  content: "";
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  right: 20px;
+  top: 18px;
+}
+.multi:hover::before {
+  border-color: #dfd9cd;
+}
+.check {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- chips (commands): compact 2-column grid, whole step fits one mobile screen ---------- */
+.chips {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 18px;
+  width: 100%;
+}
+.chip {
+  align-items: center;
+  background-color: var(--bg);
+  border-radius: 14px;
+  box-shadow: 0 0 0 2px var(--option-border);
+  color: var(--text);
+  display: flex;
+  font-family: var(--font-rounded);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  line-height: 18px;
+  min-height: 46px;
+  padding: 6px 38px 6px 12px;
+  position: relative;
+  text-align: left;
+}
+.chip::before {
+  border: 2px solid var(--option-border);
+  border-radius: 24px;
+  content: "";
+  height: 22px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+}
+.chip:hover {
+  box-shadow: 0 0 0 2px var(--option-border-hover);
+}
+.chip.optionSelected,
+.chip.optionSelected:hover {
+  box-shadow: 0 0 0 3px var(--brand-primary);
+}
+.chip .check {
+  height: 22px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+}
+@media (max-width: 340px) {
+  .chip {
+    font-size: 14px;
+  }
+}
+
+/* ---------- bottom action bar (ActionBarWithSkip) ---------- */
+.actionBar {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  left: 0;
+  margin: 0 auto;
+  max-width: var(--col);
+  min-height: 108px;
+  padding: 0 20px calc(10px + env(safe-area-inset-bottom, 0px));
+  position: fixed;
+  right: 0;
+  width: 100%;
+  z-index: 5;
+}
+.actionBar::after {
+  background: linear-gradient(0deg, var(--bg) 70%, rgba(255, 255, 255, 0));
+  bottom: 0;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+}
+.primary {
+  align-items: center;
+  background: var(--brand-primary);
+  border-radius: 48px;
+  color: #fff;
+  display: flex;
+  font-size: 22px;
+  font-weight: 700;
+  height: 60px;
+  min-height: 60px;
+  justify-content: center;
+  letter-spacing: 0.088px;
+  line-height: 28px;
+  position: relative;
+  text-align: center;
+  transition: background 0.2s;
+  width: 100%;
+}
+.primary:hover {
+  background: var(--brand-hover);
+}
+.primary:active {
+  background: var(--brand-active);
+}
+.primary:disabled {
+  background: var(--brand-disabled);
+  pointer-events: none;
+}
+.skip {
+  color: var(--brand-primary);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  line-height: 20px;
+  margin-top: 16px;
+  text-align: center;
+}
+.skip:hover {
+  color: var(--brand-hover);
+}
+.skip:active {
+  color: var(--brand-active);
+}

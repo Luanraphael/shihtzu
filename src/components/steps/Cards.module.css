@@ -1,0 +1,400 @@
+/* Transcribed from reference `discountCards_*` (timings reference-measured). Purple → blue. */
+.step {
+  background: var(--bg);
+  color: var(--text);
+  height: 100%;
+  inset: 0;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+.stage,
+.celebration {
+  align-items: center;
+  background:
+    radial-gradient(ellipse 391px 479px at 50% 55%, rgba(201, 219, 243, 0.72) 0, rgba(226, 236, 249, 0.58) 47%, rgba(255, 255, 255, 0) 73%),
+    var(--bg);
+  display: flex;
+  flex-direction: column;
+  padding: 68px 20px calc(117px + clamp(0px, 2vh, 24px));
+  position: relative;
+  width: 100%;
+}
+.stage {
+  gap: 17px;
+  justify-content: center;
+  margin: 0 auto;
+  min-height: 100%;
+}
+.rays {
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 601px;
+  height: 766px;
+  opacity: 0.55;
+}
+.logo {
+  left: 50%;
+  position: absolute;
+  top: 16px;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+.title {
+  font-family: var(--font-rounded);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  line-height: 28px;
+  margin: 0;
+  opacity: 0;
+  text-align: center;
+  transform: translateY(-70px) scale(0.72);
+  width: 100%;
+  z-index: 2;
+}
+.titleVisible {
+  animation: headlineDrop 0.7s ease-out both;
+}
+.subtitle {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.045px;
+  line-height: 20px;
+  margin: 0;
+  opacity: 0;
+  text-align: center;
+  transform: translateY(28px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  width: 100%;
+  z-index: 2;
+}
+.subtitleVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.grid {
+  --pos-duration: 0ms;
+  aspect-ratio: 335 / 408;
+  margin: 0;
+  position: relative;
+  width: min(100vw - 40px, (100dvh - 340px) * 335 / 408, 440px);
+  z-index: 1;
+}
+.card {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: default;
+  height: 49.02%;
+  padding: 0;
+  perspective: 900px;
+  position: absolute;
+  transition:
+    left var(--pos-duration) ease-in-out,
+    top var(--pos-duration) ease-in-out,
+    opacity var(--pos-duration) ease-in-out,
+    transform 0.15s ease;
+  width: 37.91%;
+}
+.selectable {
+  cursor: pointer;
+}
+.selectable:hover {
+  transform: scale(1.07);
+}
+.cardPop {
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.25) translateY(55px);
+  transform-style: preserve-3d;
+  width: 100%;
+}
+.cardPopIn {
+  animation: cardPopIn 0.7s ease-out both;
+  animation-delay: var(--pop-delay, 0ms);
+}
+.cardInner {
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+.cardFace {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+}
+.cardFace img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.cardBack {
+  transform: rotateY(180deg);
+}
+.glow {
+  animation: glowPulse 2s ease-in-out infinite;
+  border-radius: 19px;
+  box-shadow: 0 0 18px 4px var(--brand-glow);
+  inset: -3px;
+  pointer-events: none;
+  position: absolute;
+}
+.footer {
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0, var(--bg) 59.37%);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  padding: 40px 20px calc(32px + env(safe-area-inset-bottom, 0px));
+  position: fixed;
+  right: 0;
+  z-index: 110;
+}
+.footerIntro {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.footerIntroVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.footerCelebrate {
+  animation: footerRise 0.45s ease-out 0.65s both;
+}
+.button {
+  background: var(--brand-primary);
+  border-radius: 48px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  height: 60px;
+  line-height: 28px;
+  max-width: 335px;
+  min-height: 60px;
+  text-align: center;
+  width: 100%;
+}
+.button:hover {
+  background: var(--brand-hover);
+}
+.button:active {
+  background: var(--brand-active);
+}
+.button:disabled {
+  background: var(--brand-disabled);
+  cursor: default;
+}
+.celebration {
+  animation: fadeIn 0.45s ease;
+  inset: 0;
+  overflow: hidden;
+  position: fixed;
+  z-index: 100;
+}
+.halo {
+  animation: ringCw 18s linear infinite;
+  background: conic-gradient(from 0deg, rgba(46, 96, 166, 0.08), rgba(255, 255, 255, 0) 12%, rgba(46, 96, 166, 0.08) 25%, rgba(255, 255, 255, 0) 37%, rgba(46, 96, 166, 0.08) 50%, rgba(255, 255, 255, 0) 62%, rgba(46, 96, 166, 0.08) 75%, rgba(255, 255, 255, 0) 87%);
+  border-radius: 50%;
+  height: 700px;
+  left: 50%;
+  margin: -350px 0 0 -350px;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  width: 700px;
+}
+.rings {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+.ringOuter,
+.ringInner {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
+.ringOuter {
+  animation: ringCw 16s linear infinite;
+  height: 600px;
+  margin: -300px 0 0 -300px;
+  width: 600px;
+}
+.ringInner {
+  animation: ringCcw 9s linear infinite;
+  height: 390px;
+  margin: -195px 0 0 -195px;
+  width: 390px;
+}
+.winText {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+.winHeadline {
+  animation: celebrateText 0.5s ease-out 0.25s both;
+  color: var(--error);
+  font-family: var(--font-rounded);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+}
+.winTitle {
+  animation: celebrateText 0.5s ease-out 0.4s both;
+  font-family: var(--font-rounded);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 34px;
+  text-align: center;
+}
+.winCard {
+  animation: winCardPop 0.9s ease-out 0.18s both;
+  aspect-ratio: 197 / 310;
+  border-radius: 12px;
+  margin: auto 0;
+  overflow: hidden;
+  position: relative;
+  width: max(120px, min(260px, 52vw, (100dvh - 301px) * 197 / 310));
+  z-index: 1;
+}
+.winCard img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.confetti {
+  height: 100vh;
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  width: 100vw;
+  z-index: 9999;
+}
+@media (min-width: 768px) {
+  .stage,
+  .celebration {
+    justify-content: space-between;
+  }
+}
+@keyframes headlineDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-70px) scale(0.72);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(8px) scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes cardPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.25) translateY(55px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes footerRise {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes celebrateText {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes glowPulse {
+  0%,
+  to {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+@keyframes ringCw {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@keyframes ringCcw {
+  to {
+    transform: rotate(-1turn);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes winCardPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1.22);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  90% {
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,279 @@
+/* reference `plan_*`, `mailV3_*` (emailV2 variant) and `receiveEmail_*` */
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 0 120px;
+  width: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 430px;
+  padding-top: 30px;
+  width: 100%;
+}
+.title {
+  color: var(--text);
+  font-family: var(--font-rounded);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 34px;
+  padding: 0 20px;
+  text-align: center;
+  word-break: break-word;
+}
+.title b,
+.title span {
+  color: var(--brand-primary);
+}
+.cardWrapper {
+  margin-top: 24px;
+  padding: 0 20px;
+  width: 100%;
+}
+.card {
+  align-items: center;
+  background-color: var(--surface);
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px 20px;
+  position: relative;
+  width: 100%;
+}
+.cardText {
+  color: var(--text);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.076px;
+  line-height: 24px;
+  text-align: center;
+}
+.avatarWrap {
+  position: relative;
+  margin-top: 16px;
+}
+.avatar {
+  align-items: flex-end;
+  background-color: #ff8d00;
+  border-radius: 176px;
+  display: flex;
+  height: 176px;
+  justify-content: center;
+  overflow: hidden;
+  width: 176px;
+}
+.avatar img {
+  width: 92%;
+  height: auto;
+  margin-bottom: -6%;
+}
+.avatarBadge {
+  align-items: center;
+  background: #29a073;
+  border: 3px solid var(--surface);
+  border-radius: 50%;
+  bottom: 4px;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  position: absolute;
+  right: -6px;
+  width: 44px;
+}
+.tileLeft,
+.tileRight {
+  align-items: center;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+.tileLeft {
+  background: linear-gradient(145deg, #2cbf87, #00a36f);
+  height: 76px;
+  left: -36px;
+  top: 22px;
+  transform: rotate(-12deg);
+  width: 76px;
+}
+.tileRight {
+  background: linear-gradient(145deg, #ffb13d, #ff8e00);
+  height: 96px;
+  right: -48px;
+  top: 172px;
+  transform: rotate(10deg);
+  width: 96px;
+}
+.dogInfo {
+  border-top: 1px solid #dcd3c1;
+  margin-top: 24px;
+  padding-top: 22px;
+  width: 100%;
+}
+.dogInfo li {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  line-height: 20px;
+  padding-left: 33px;
+  position: relative;
+}
+.dogInfo li + li {
+  margin-top: 16px;
+}
+.dogInfo li svg {
+  left: 0;
+  position: absolute;
+  top: -2px;
+}
+.dogInfo li span {
+  font-family: var(--font-rounded);
+  font-weight: 700;
+}
+.description {
+  margin-top: 32px;
+}
+.descrTitle {
+  color: var(--text);
+  font-family: var(--font-rounded);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 34px;
+  margin-bottom: 8px;
+  padding: 0 20px;
+  text-align: center;
+}
+.descrText {
+  color: var(--text-2);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.051px;
+  line-height: 22px;
+  margin-bottom: 16px;
+  padding: 0 20px;
+  text-align: center;
+}
+.descrImg {
+  padding: 0 20px;
+}
+.descrImg img {
+  border-radius: 32px;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- e-mail ---- */
+.mail {
+  padding: 20px 20px 160px;
+}
+.mailTitle {
+  color: var(--text);
+  font-family: var(--font-rounded);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 34px;
+  margin: 0 auto;
+  max-width: 300px;
+  text-align: center;
+}
+.mailTitle span {
+  color: var(--brand-primary);
+}
+.mailSubtitle {
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.051px;
+  line-height: 22px;
+  margin-top: 8px;
+  text-align: center;
+}
+.inputWrapper {
+  margin-top: 32px;
+  position: relative;
+}
+.mailInput {
+  background: var(--surface);
+  border-radius: 40px;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 700;
+  height: 60px;
+  letter-spacing: 0.068px;
+  line-height: 22px;
+  padding: 12px 12px 12px 24px;
+  width: 100%;
+}
+.mailInput::placeholder {
+  color: var(--placeholder);
+}
+.mailInputError {
+  box-shadow: inset 0 0 0 1px var(--error);
+}
+.warning {
+  color: var(--error);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  line-height: 13px;
+  margin-top: 5px;
+  padding-left: 24px;
+}
+.mailDescription {
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  line-height: 13px;
+  margin-top: 24px;
+  text-align: center;
+}
+.mailDescription a {
+  text-decoration: underline;
+}
+
+/* ---- receive e-mail ---- */
+.receive {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - 72px);
+  padding: 20px 20px 130px;
+}
+.receiveTitle {
+  color: var(--text);
+  font-family: var(--font-rounded);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 34px;
+  margin: 0 auto;
+  max-width: 470px;
+  text-align: center;
+}
+.receiveTitle span {
+  color: var(--brand-primary);
+}
+.receiveImage {
+  margin-bottom: auto;
+  margin-top: auto;
+  width: 250px;
+  height: auto;
+}
+@media (min-width: 566px) and (max-width: 767px) {
+  .receiveImage {
+    width: 350px;
+  }
+}
+@media (min-width: 768px) {
+  .receiveImage {
+    width: 420px;
+  }
+}

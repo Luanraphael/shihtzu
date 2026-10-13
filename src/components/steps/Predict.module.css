@@ -1,0 +1,312 @@
+/* Transcribed from reference `infoPredict_*` (values and animation delays are reference-measured). */
+.wrapper {
+  align-items: center;
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  overflow: hidden;
+  padding: 0 20px 110px;
+  width: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 430px;
+  padding-top: 64px;
+  position: relative;
+  width: 100%;
+}
+.backButton {
+  align-items: center;
+  background-color: var(--surface);
+  border-radius: 12px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 16px;
+  width: 40px;
+}
+.backButton:active {
+  opacity: 0.5;
+}
+.title2 {
+  color: var(--text);
+  font-family: var(--font-rounded);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 24px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.title {
+  color: var(--text);
+  font-family: var(--font-rounded);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 34px;
+  text-align: center;
+  word-break: break-word;
+}
+.title span {
+  color: var(--brand-primary);
+}
+.subtitle {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.045px;
+  line-height: 20px;
+  margin-top: 8px;
+  max-width: 430px;
+  text-align: center;
+}
+.subtitle b {
+  font-weight: 700;
+}
+.chartWrapper {
+  background: var(--surface);
+  border-radius: 32px;
+  margin-top: 16px;
+  max-width: 430px;
+  padding: 99px 24px 14px;
+  width: 100%;
+}
+.chart {
+  position: relative;
+  width: 100%;
+}
+.scale {
+  inset: -2px 0 15px;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 13px);
+}
+.chartLine {
+  display: block;
+  height: auto;
+  margin-bottom: 17px;
+  margin-top: -17px;
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+.path1 {
+  stroke-dasharray: 350;
+  stroke-dashoffset: 350;
+  transition: stroke-dashoffset 2s ease;
+}
+.point {
+  height: 20px;
+  opacity: 0;
+  position: absolute;
+  width: 20px;
+  z-index: 5;
+}
+.startPoint {
+  bottom: 17px;
+  left: 19px;
+}
+.endPoint {
+  right: 16px;
+  top: -7px;
+}
+.vline {
+  bottom: 0;
+  opacity: 0;
+  position: absolute;
+  width: 2px;
+}
+.lineEnd {
+  height: 100%;
+  right: 25px;
+}
+.lineStart {
+  height: 23px;
+  left: 28px;
+}
+.mark {
+  border-radius: 16px;
+  color: #fff;
+  opacity: 0;
+  padding: 10px 12px;
+  position: absolute;
+  z-index: 6;
+}
+.mark h4 {
+  font-family: var(--font-rounded);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.048px;
+  line-height: 14px;
+  margin-bottom: 4px;
+}
+.mark li {
+  font-family: var(--font-base);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  line-height: 13px;
+  opacity: 0.85;
+  padding-left: 6px;
+  position: relative;
+}
+.mark li + li {
+  margin-top: 2px;
+}
+.mark li::before {
+  background: #fff;
+  border-radius: 50%;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+}
+.mark1 {
+  background: #ff8e00;
+  bottom: 48px;
+  left: -10px;
+}
+.mark2 {
+  background: #00a36f;
+  padding-left: 42px;
+  right: -10px;
+  top: -82px;
+}
+.mark1::after,
+.mark2::after {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  bottom: -8px;
+  content: "";
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+.mark1::after {
+  border-top: 9px solid #ff8e00;
+  left: 26px;
+}
+.mark2::after {
+  border-top: 9px solid #00a36f;
+  right: 26px;
+}
+.trophy {
+  font-size: 46px;
+  left: -16px;
+  line-height: 1;
+  position: absolute;
+  top: 2px;
+  z-index: 5;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.15));
+}
+.confetti {
+  left: -26px;
+  opacity: 0;
+  position: absolute;
+  top: -18px;
+  z-index: 1;
+}
+
+/* reference-measured animation schedule (class added when the chart is 50% visible) */
+.animate .path1 {
+  stroke-dashoffset: 0;
+}
+.animate .lineEnd {
+  animation: fadeIn 0.6s linear 2s both;
+}
+.animate .lineStart {
+  animation: fadeIn 0.6s linear 0.3s both;
+}
+.animate .startPoint {
+  animation: animMark 1s linear 0.3s both;
+}
+.animate .mark1 {
+  animation: fadeIn 0.6s linear 0.3s both;
+}
+.animate .endPoint {
+  animation: animMark 1s linear 1.2s both;
+}
+.animate .mark2 {
+  animation: fadeIn 0.6s linear 1s both;
+}
+.animate .confetti {
+  animation: animConfeti 0.7s linear 2s both;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes animMark {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes animConfeti {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+
+.chartDescr {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  padding-left: 6%;
+  padding-right: 3%;
+  width: 100%;
+}
+.chartDescr p {
+  font-family: var(--font-rounded);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.056px;
+  line-height: 16px;
+}
+.chartDescr p:first-child {
+  color: var(--text-2);
+  font-size: 14px;
+}
+.chartDescr p:last-child {
+  color: #00a36f;
+}
+.description {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.045px;
+  line-height: 20px;
+  margin-top: 12px;
+  max-width: 430px;
+  text-align: center;
+}

@@ -1,0 +1,30 @@
+/* reference `app_*` / `stepsContent_*`: centred column (max 465px), steps cross-fade in .1s */
+.app {
+  background: var(--bg);
+  margin: 0 auto;
+  max-width: var(--col);
+  min-height: 100dvh;
+  position: relative;
+}
+.stepWrapper {
+  animation: stepIn 0.1s both;
+}
+@keyframes stepIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.blank {
+  min-height: 100dvh;
+  background: var(--bg);
+}
+.coatOther {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
