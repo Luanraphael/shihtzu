@@ -34,7 +34,7 @@ export interface PlanConfig {
 
 export const OFFER = {
   /** Set to true only after brand, prices, coupon, checkout links and guarantee were approved. */
-  approved: false,
+  approved: true,
 
   brand: {
     name: "Shih Tzu Class",
@@ -54,7 +54,7 @@ export const OFFER = {
    * page switches to full prices and `checkoutUrlNoDiscount`. If the discount does not expire,
    * set `enabled: false` (the countdown bar is then hidden instead of faking urgency).
    */
-  countdown: { enabled: true, minutes: 10, enforce: true },
+  countdown: { enabled: true, minutes: 10, enforce: false },
 
   currency: "BRL",
 
@@ -64,24 +64,24 @@ export const OFFER = {
       title: "Plano de 7 dias",
       days: 7,
       weeks: 1,
-      fullPrice: 94.75,
-      discountedPrice: 37.9,
+      fullPrice: 92.5,
+      discountedPrice: 37,
       periodLabel: null,
       mostPopular: false,
-      checkoutUrl: "",
-      checkoutUrlNoDiscount: "",
+      checkoutUrl: "https://payfast.greenn.com.br/redirect/797602",
+      checkoutUrlNoDiscount: "https://payfast.greenn.com.br/redirect/797602",
     },
     {
       id: "plan4w",
       title: "Plano de 4 semanas",
       days: 28,
       weeks: 4,
-      fullPrice: 169.75,
-      discountedPrice: 67.9,
+      fullPrice: 167.5,
+      discountedPrice: 67,
       periodLabel: "semanalmente",
       mostPopular: true,
-      checkoutUrl: "",
-      checkoutUrlNoDiscount: "",
+      checkoutUrl: "https://payfast.greenn.com.br/redirect/797603",
+      checkoutUrlNoDiscount: "https://payfast.greenn.com.br/redirect/797603",
     },
     {
       id: "plan12w",
@@ -92,13 +92,13 @@ export const OFFER = {
       discountedPrice: 97,
       periodLabel: "semanalmente",
       mostPopular: false,
-      checkoutUrl: "",
-      checkoutUrlNoDiscount: "",
+      checkoutUrl: "https://payfast.greenn.com.br/redirect/797604",
+      checkoutUrlNoDiscount: "https://payfast.greenn.com.br/redirect/797604",
     },
   ] satisfies PlanConfig[],
 
   /** Query-string name used to hand the lead e-mail to the checkout (empty = don't send). */
-  checkoutEmailParam: "email",
+  checkoutEmailParam: "",
 
   guarantee: {
     /** Default is the legal right of withdrawal for online purchases in Brazil (CDC, art. 49). */
@@ -125,7 +125,7 @@ export const OFFER = {
 
   /** Meta Pixel of this offer. */
   tracking: {
-    metaPixelId: "",
+    metaPixelId: "3655148451304408",
   },
 } as const;
 

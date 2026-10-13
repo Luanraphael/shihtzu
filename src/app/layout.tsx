@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Nunito } from "next/font/google";
 import { FunnelProvider } from "@/lib/store";
-import { MetaPixel } from "@/components/MetaPixel";
+import { MetaPixelNoScript, TrackingScripts } from "@/components/MetaPixel";
 import { OFFER } from "@/config/offer";
 import "./globals.css";
 
@@ -12,8 +12,8 @@ import "./globals.css";
 const nunito = Nunito({ variable: "--font-nunito", subsets: ["latin"], weight: ["900"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: `Plano de treino para Shih Tzu | ${OFFER.brand.name}`,
-  description: "Responda ao quiz e receba um plano de treino personalizado para o seu Shih Tzu.",
+  title: `Programa de treino para Shih Tzu | ${OFFER.brand.name}`,
+  description: "Responda ao quiz e receba um programa de treino personalizado para o seu Shih Tzu.",
 };
 
 export const viewport: Viewport = {
@@ -27,8 +27,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" className={nunito.variable}>
+      <head>
+        <TrackingScripts />
+      </head>
       <body>
-        <MetaPixel />
+        <MetaPixelNoScript />
         <FunnelProvider>{children}</FunnelProvider>
       </body>
     </html>

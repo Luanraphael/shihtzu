@@ -14,15 +14,15 @@
   --text: #231e19;
   --text-2: #7b766f;
   --placeholder: #aaa59f;
-  --line: #ece5d8;
-  --surface: #f3eddf;
-  --surface-hover: #e5ded1;
-  --surface-active: #d1cabc;
-  --track: #e3ddd2;
-  --option-border: #f7e7d6;
-  --option-border-hover: #e0d4c6;
-  --input-line: #cfc2b1;
-  --input-line-focus: #ab9a89;
+  --line: #d9e4f2;
+  --surface: #eef3fa;
+  --surface-hover: #e1e9f5;
+  --surface-active: #cbd9ee;
+  --track: #dbe5f2;
+  --option-border: #c9d9ef;
+  --option-border-hover: #9fb9df;
+  --input-line: #b8cbe6;
+  --input-line-focus: #2e60a6;
 
   /* Functional colours of the reference (not theme colour → unchanged). */
   --orange: #ff8e00;

@@ -27,7 +27,6 @@ export const STEP_ORDER: StepId[] = [
   "st_bond",
   "creating",
   "plan",
-  "email",
   "cards",
 ];
 
@@ -54,7 +53,7 @@ export type HeaderMode = "full" | "logo" | "none";
 /** `hideHeader` / `hideProgress` flags of the reference config. */
 export function headerMode(step: StepId): HeaderMode {
   if (["start", "info_coat", "loading_behavior", "info_summary", "predict", "cards"].includes(step)) return "none";
-  if (["creating", "plan", "email"].includes(step)) return "logo";
+  if (["creating", "plan"].includes(step)) return "logo";
   return "full";
 }
 

@@ -10,7 +10,7 @@ import { withTracking } from "@/lib/utm";
 import { track } from "../MetaPixel";
 
 const BENEFITS = [
-  "Plano de treino personalizado para resultados duradouros",
+  "Programa de treino personalizado para resultados duradouros",
   "Apenas 10 minutos de treino por dia",
   "Biblioteca de videoaulas fáceis de acompanhar",
   "Jogos e truques para ensinar novas habilidades",
@@ -33,11 +33,11 @@ const TESTIMONIALS = [1, 2, 3, 4].map((i) => `/img/depoimento-${i}.webp`);
 const FAQ = [
   {
     q: "Em quanto tempo vou ver os primeiros resultados?",
-    a: "Depende do seu Shih Tzu e da constância dos treinos. O plano é dividido em etapas curtas para você praticar todos os dias e acompanhar a evolução de perto.",
+    a: "Depende do seu Shih Tzu e da constância dos treinos. O programa é dividido em etapas curtas para você praticar todos os dias e acompanhar a evolução de perto.",
   },
   {
-    q: "O plano substitui o veterinário?",
-    a: "Não. Mudanças repentinas no xixi, no apetite ou no comportamento podem ter causa de saúde e devem ser avaliadas por um veterinário. O plano ajuda você a treinar em casa, no seu ritmo.",
+    q: "O programa substitui o veterinário?",
+    a: "Não. Mudanças repentinas no xixi, no apetite ou no comportamento podem ter causa de saúde e devem ser avaliadas por um veterinário. O programa ajuda você a treinar em casa, no seu ritmo.",
   },
   {
     q: "Os resultados do treino são permanentes?",
@@ -59,7 +59,7 @@ function GreenCheck() {
   );
 }
 
-/** Testimonial showcase: two at a time, sliding one card every 3.5 s in an endless loop. */
+/** Testimonial showcase: one testimonial at a time, full width, endless loop every 5 s. */
 function Showcase() {
   const n = TESTIMONIALS.length;
   const [i, setI] = useState(0);
@@ -68,7 +68,7 @@ function Showcase() {
     const id = window.setInterval(() => {
       setSmooth(true);
       setI((v) => v + 1);
-    }, 3500);
+    }, 5000);
     return () => window.clearInterval(id);
   }, []);
   // after sliding onto the cloned cards, jump back to the real first card without animation
@@ -78,12 +78,12 @@ function Showcase() {
       setI(0);
     }
   };
-  const loop = [...TESTIMONIALS, ...TESTIMONIALS.slice(0, 2)];
+  const loop = [...TESTIMONIALS, TESTIMONIALS[0]];
   return (
     <div className={s.showcase}>
       <div
         className={s.showcaseTrack}
-        style={{ transform: `translateX(calc(${-i} * (50% + 5px)))`, transition: smooth ? undefined : "none" }}
+        style={{ transform: `translateX(calc(${-i} * (100% + 12px)))`, transition: smooth ? undefined : "none" }}
         onTransitionEnd={onEnd}
       >
         {loop.map((src, k) => (
@@ -154,14 +154,14 @@ export function Paywall() {
           <div className={s.promoTag}>{coupon.percent}% de desconto</div>
           <div className={s.promoRowFirst}>
             <Tag className={s.promoLabel} size={26} color="#ff8e00" strokeWidth={2} />
-            <p className={s.promoTitle}>{active ? "Cupom de desconto aplicado!" : "Cupom expirado"}</p>
+            <p className={s.promoTitle}>{active ? "Cupom aplicado!" : "Cupom expirado"}</p>
           </div>
           <div className={s.promoRowSecond}>
             <div className={s.promoCode}>
               <Check size={16} color={active ? "#00a36f" : "#7b766f"} strokeWidth={3} />
               <p className={`${s.promoCodeText} ${active ? "" : s.promoCodeExpired}`}>{coupon.code}</p>
             </div>
-            {showTimer && (
+            {showTimer && (remaining === null || remaining > 0) && (
               <div className={s.promoTimer}>
                 {mm}
                 <span className={s.timerDivider}>:</span>
@@ -182,7 +182,10 @@ export function Paywall() {
               role="radio"
               aria-checked={isSel}
               className={`${s.option} ${p.mostPopular ? s.optionPopular : ""} ${isSel ? s.optionSelected : ""}`}
-              onClick={() => f.setPlan(p.id)}
+              onClick={() => {
+                f.setPlan(p.id);
+                track("AddToCart", { content_name: p.title, value: chargedPrice(p, active), currency: OFFER.currency });
+              }}
             >
               {p.mostPopular && <span className={s.bestOffer}>O mais popular</span>}
               <span className={s.radio}>{isSel && <Check size={14} color="#fff" strokeWidth={3.5} />}</span>
@@ -211,7 +214,7 @@ export function Paywall() {
       <div className={s.cta}>
         <button type="button" className={s.ctaButton} onClick={checkout}>
           <span className={s.ctaInner}>
-            Quero meu plano
+            Quero meu programa
             <ArrowRight className={s.ctaArrow} size={20} strokeWidth={2.4} />
           </span>
         </button>
@@ -225,8 +228,8 @@ export function Paywall() {
       {showTimer && (
         <div className={s.timerTop}>
           <div className={`${s.timer} ${active ? "" : s.timerExpired}`} role="timer" aria-live="off">
-            <p className={s.timerText}>{active ? "Seu desconto expira em" : "Seu desconto reservado expirou"}</p>
-            {active && (
+            <p className={s.timerText}>{remaining !== null && remaining <= 0 ? "Seu desconto está reservado" : "Seu desconto expira em"}</p>
+            {(remaining === null || remaining > 0) && (
               <div className={s.timerTime}>
                 <span>{mm}</span>
                 <span className={s.timerDivider}>:</span>
@@ -237,21 +240,27 @@ export function Paywall() {
         </div>
       )}
 
-      <div className={s.hero}>
-        <div className={s.heroBefore}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/hero-3-almofada.webp" alt="Shih Tzu destruindo uma almofada" />
-        </div>
-        <div className={s.heroAfter}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/frisbee-selo.webp" alt="Shih Tzu feliz e bem-comportado com frisbee" />
-        </div>
-        <span className={s.heroDivider} aria-hidden="true" />
-      </div>
       <h1 className={s.mainTitle}>
-        O plano de treino {name ? (a.gender === "female" ? "da " : "do ") : "do "}
+        O programa de treino {name ? (a.gender === "female" ? "da " : "do ") : "do "}
         <span>{name || "seu Shih Tzu"}</span> começa agora!
       </h1>
+
+      <div className={s.compare}>
+        <div className={s.compareTabs}>
+          <span>Agora</span>
+          <span className={s.compareSep} aria-hidden="true" />
+          <span>Após o programa</span>
+        </div>
+        <div className={s.compareImgs}>
+          <svg className={s.compareArrow} viewBox="0 0 60 120" aria-hidden="true">
+            <path d="M8 6l42 54-42 54" fill="none" stroke="currentColor" strokeWidth="14" strokeLinejoin="round" />
+          </svg>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/offer-agora.webp" alt="Agora: Shih Tzu fazendo xixi fora do lugar" width={560} height={560} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/offer-depois.webp" alt="Após o programa: Shih Tzu usando o tapete higiênico" width={560} height={560} />
+        </div>
+      </div>
 
       <div className={s.section}>
         <div className={s.reviews}>
@@ -272,8 +281,11 @@ export function Paywall() {
           </p>
         </div>
 
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className={s.beforeAfter} src="/img/antes-depois.webp" alt="Antes e depois do treinamento do Shih Tzu" width={800} height={1200} loading="lazy" />
+
         <div className={s.benefits}>
-          <h2 className={s.h2}>O que o plano do seu Shih Tzu inclui</h2>
+          <h2 className={s.h2}>O que o programa do seu Shih Tzu inclui</h2>
           <div className={s.items}>
             {BENEFITS.map((b, i) => (
               <div key={b} className={s.item}>

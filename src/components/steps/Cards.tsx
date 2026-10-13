@@ -231,7 +231,7 @@ export function Cards({ alreadyRevealed, code, onReveal, onContinue }: Props) {
           <div className={s.logo}>
             <Logo />
           </div>
-          <h2 className={`${s.title} ${notFaceUp || intro >= 1 ? s.titleVisible : ""}`}>Economize no seu plano personalizado</h2>
+          <h2 className={`${s.title} ${notFaceUp || intro >= 1 ? s.titleVisible : ""}`}>Economize no seu programa personalizado</h2>
           <div className={s.grid} style={{ ["--pos-duration" as string]: `${posDuration}ms` }}>
             {cards.map((c) => {
               const pos = c.gathered ? CENTER : SLOTS[c.slot];
@@ -263,7 +263,7 @@ export function Cards({ alreadyRevealed, code, onReveal, onContinue }: Props) {
             })}
           </div>
           <p className={`${s.subtitle} ${introDone && (notFaceUp || intro >= 3) ? s.subtitleVisible : ""}`}>
-            Toque em uma carta para revelar seu desconto de boas-vindas no plano de treino do seu Shih Tzu
+            Toque em uma carta para revelar seu desconto de boas-vindas no programa de treino do seu Shih Tzu
           </p>
         </div>
       )}
@@ -286,7 +286,7 @@ export function Cards({ alreadyRevealed, code, onReveal, onContinue }: Props) {
           </div>
           <div className={s.winText}>
             <p className={s.winHeadline}>
-              Cupom {code} aplicado ao seu plano
+              Cupom {code} aplicado ao seu programa
             </p>
             <p className={s.winTitle}>Você recebeu {percent}% de desconto!</p>
           </div>

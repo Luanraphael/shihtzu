@@ -27,7 +27,8 @@ test("order follows the reference (customV18) and ends at the offer", () => {
   assert.deepEqual(p.slice(0, 9), ["start", "gender", "name", "age", "coat", "health", "info_coat", "loading_behavior", "potty"]);
   assert.ok(!p.includes("owner_age" as never) && !p.includes("receive_email" as never));
   assert.equal(p[p.indexOf("st_bond") + 1], "creating");
-  assert.equal(p[p.indexOf("email") + 1], "cards");
+  assert.equal(p[p.indexOf("plan") + 1], "cards");
+  assert.ok(!p.includes("email" as never));
   assert.equal(p.at(-1), "offer");
   assert.equal(p.at(-2), "cards");
   assert.ok(p.indexOf("st_irritation") === p.indexOf("issues") + 1);
@@ -122,8 +123,8 @@ test("coupon is named after the dog", () => {
   assert.equal(couponCode(A(), now), "ShihTzu_out26");
 });
 
-test("plans: R$ 37,90 / 67,90 / 97,00 and the longer plan has the lower daily price", () => {
+test("plans: R$ 37 / 67 / 97 and the longer plan has the lower daily price", () => {
   const [a, b, c] = OFFER.plans;
-  assert.deepEqual([a.discountedPrice, b.discountedPrice, c.discountedPrice], [37.9, 67.9, 97]);
+  assert.deepEqual([a.discountedPrice, b.discountedPrice, c.discountedPrice], [37, 67, 97]);
   assert.ok(perDay(a, true) > perDay(b, true) && perDay(b, true) > perDay(c, true));
 });

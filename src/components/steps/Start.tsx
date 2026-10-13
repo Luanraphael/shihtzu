@@ -6,6 +6,7 @@ import { Logo, PawIcon } from "../ui";
 import { useFunnel } from "@/lib/store";
 import { T } from "@/lib/timing";
 import { OFFER } from "@/config/offer";
+import { track } from "../MetaPixel";
 
 /** Same five scenes and order as the reference; copy without invented time frames (briefing §A). */
 const SLIDES = [
@@ -115,7 +116,11 @@ export function Start() {
               </a>
               , e concordo com o tratamento dos meus dados pessoais.
             </p>
-            <button type="button" className={s.nextButton} onClick={() => advance()}>
+            <button type="button" className={s.nextButton} onClick={() => {
+                track("Lead", { content_name: "inicio_quiz" });
+                advance();
+              }}
+            >
               Continuar
             </button>
           </div>

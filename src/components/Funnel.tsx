@@ -47,12 +47,13 @@ import { InfoCoat, InfoSummary, LoadingBehavior } from "./steps/Info";
 import { Statement } from "./steps/Statement";
 import { Predict } from "./steps/Predict";
 import { Creating } from "./steps/Creating";
-import { EmailStep, PlanReady, COAT_LABEL } from "./steps/Final";
+import { PlanReady, COAT_LABEL } from "./steps/Final";
 import { Cards } from "./steps/Cards";
 import { useFunnel } from "@/lib/store";
 import { cleanName, couponCode, g, pron, REASON_DATE_TITLE } from "@/lib/personalize";
 import { withTracking } from "@/lib/utm";
 import { OFFER } from "@/config/offer";
+import { track } from "./MetaPixel";
 import type {
   ActivityLevel,
   AgeRange,
@@ -388,17 +389,15 @@ export function Funnel() {
       case "plan":
         return <PlanReady a={a} onContinue={() => advance()} />;
 
-      case "email":
-        return <EmailStep initial={a.email} onDone={(email) => advance({ email })} />;
-
       case "cards":
         return (
           <Cards
             alreadyRevealed={!!f.state.coupon}
             code={f.state.coupon?.code ?? couponCode(a)}
-            onReveal={() =>
-              f.setCoupon({ code: couponCode(a), percent: OFFER.coupon.percent, revealedAt: Date.now(), expiresAt: null })
-            }
+            onReveal={() => {
+              track("CompleteRegistration", { content_name: "quiz_concluido" });
+              f.setCoupon({ code: couponCode(a), percent: OFFER.coupon.percent, revealedAt: Date.now(), expiresAt: null });
+            }}
             onContinue={() => advance(undefined, 0)}
           />
         );

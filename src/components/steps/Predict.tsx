@@ -66,7 +66,7 @@ export function Predict({ a, onBack, onContinue }: { a: Answers; onBack: () => v
         <div className={s.chart} ref={chartRef}>
           <svg className={s.scale} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             {[0, 25, 50, 75, 100].map((y) => (
-              <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#d8d0c2" strokeWidth="1" strokeDasharray="3 2" vectorEffect="non-scaling-stroke" />
+              <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#c6d5ea" strokeWidth="1" strokeDasharray="3 2" vectorEffect="non-scaling-stroke" />
             ))}
           </svg>
           <Point color="#ff8e00" className={s.startPoint} />

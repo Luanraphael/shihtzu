@@ -114,7 +114,6 @@ export type StepId =
   | "st_bond"
   | "creating"
   | "plan"
-  | "email"
   | "cards";
 
 export const EMPTY_ANSWERS: Answers = {

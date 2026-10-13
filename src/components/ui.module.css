@@ -214,7 +214,7 @@
   top: 18px;
 }
 .multi:hover::before {
-  border-color: #dfd9cd;
+  border-color: #9fb9df;
 }
 .check {
   position: absolute;

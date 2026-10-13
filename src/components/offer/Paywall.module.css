@@ -161,7 +161,7 @@
 
 /* age chart card */
 .card {
-  background: #ece7dd;
+  background: #eef3fa;
   border-radius: 32px;
   margin-top: 10px;
   padding: 24px 0;
@@ -421,7 +421,7 @@
 }
 .option {
   align-items: center;
-  background: rgba(243, 237, 223, 0.5);
+  background: #f3f7fc;
   border-radius: 24px;
   display: flex;
   justify-content: space-between;
@@ -444,7 +444,7 @@
   box-shadow: 0 0 0 3px var(--brand-primary);
 }
 .radio {
-  border: 2px solid #ded9cd;
+  border: 2px solid #c9d9ef;
   border-radius: 39px;
   height: 24px;
   left: 16px;
@@ -559,7 +559,7 @@
 }
 .note {
   background: #fff;
-  border: 1px solid #ece5d8;
+  border: 1px solid #d9e4f2;
   border-radius: 16px;
   box-shadow: 0 6px 14px -8px rgba(46, 96, 166, 0.35);
   color: var(--text);
@@ -711,7 +711,7 @@
   margin-top: 19px;
 }
 .faqItem {
-  border-bottom: 1px solid #dedee0;
+  border-bottom: 1px solid #dbe5f2;
   padding: 24px 0;
   position: relative;
 }
@@ -851,12 +851,64 @@
 }
 .showcaseTrack {
   display: flex;
-  gap: 10px;
-  transition: transform 0.7s ease-in-out;
+  gap: 12px;
+  transition: transform 0.8s ease-in-out;
 }
 .showcaseItem {
-  border-radius: 18px;
-  flex: 0 0 calc(50% - 5px);
+  border-radius: 22px;
+  flex: 0 0 100%;
   height: auto;
-  width: calc(50% - 5px);
+  width: 100%;
+}
+
+/* "Agora | Após o programa" comparison (structure of the reference offer-hero) */
+.compare {
+  margin: 14px 20px 0;
+}
+.compareTabs {
+  align-items: center;
+  background: var(--brand-primary);
+  border-radius: 12px;
+  color: #fff;
+  display: grid;
+  font-family: var(--font-rounded);
+  font-size: 15px;
+  font-weight: 800;
+  grid-template-columns: 1fr auto 1fr;
+  letter-spacing: 0.6px;
+  padding: 9px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+.compareSep {
+  background: rgba(255, 255, 255, 0.55);
+  height: 16px;
+  width: 1.5px;
+}
+.compareImgs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+.compareImgs img {
+  height: auto;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+.compareArrow {
+  color: var(--brand-soft);
+  height: 84%;
+  left: 50%;
+  position: absolute;
+  top: 8%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+.beforeAfter {
+  border-radius: 24px;
+  display: block;
+  height: auto;
+  margin-top: 20px;
+  width: 100%;
 }
