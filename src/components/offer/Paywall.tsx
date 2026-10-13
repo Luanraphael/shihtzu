@@ -28,6 +28,14 @@ const LEARN: [string, string][] = [
   ["Aprender novos comandos e truques", "Com treinos simples, no conforto da sua casa e respeitando o ritmo do seu Shih Tzu."],
 ];
 
+/** "Agora | Após o programa" rows, shown one under the other. */
+const COMPARE = [
+  { now: "/img/offer-agora.webp", nowAlt: "Shih Tzu fazendo xixi fora do lugar", after: "/img/offer-depois.webp", afterAlt: "Shih Tzu fazendo xixi no tapete higiênico" },
+  { now: "/img/offer-coco-agora.webp", nowAlt: "Shih Tzu fazendo cocô no chão", after: "/img/offer-coco-depois.webp", afterAlt: "Shih Tzu fazendo cocô no tapete higiênico" },
+  { now: "/img/offer-porta-agora.webp", nowAlt: "Shih Tzu latindo para a porta", after: "/img/offer-porta-depois.webp", afterAlt: "Shih Tzu tranquilo dormindo ao lado da porta" },
+  { now: "/img/offer-mesa-agora.webp", nowAlt: "Shih Tzu tentando pegar comida da mesa", after: "/img/offer-mesa-depois.webp", afterAlt: "Shih Tzu calmo ao lado da mesa" },
+];
+
 const TESTIMONIALS = [1, 2, 3, 4].map((i) => `/img/depoimento-${i}.webp`);
 
 const FAQ = [
@@ -251,15 +259,17 @@ export function Paywall() {
           <span className={s.compareSep} aria-hidden="true" />
           <span>Após o programa</span>
         </div>
-        <div className={s.compareImgs}>
-          <svg className={s.compareArrow} viewBox="0 0 60 120" aria-hidden="true">
-            <path d="M8 6l42 54-42 54" fill="none" stroke="currentColor" strokeWidth="14" strokeLinejoin="round" />
-          </svg>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/offer-agora.webp" alt="Agora: Shih Tzu fazendo xixi fora do lugar" width={560} height={560} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/offer-depois.webp" alt="Após o programa: Shih Tzu usando o tapete higiênico" width={560} height={560} />
-        </div>
+        {COMPARE.map((row) => (
+          <div key={row.now} className={s.compareImgs}>
+            <svg className={s.compareArrow} viewBox="0 0 60 120" aria-hidden="true">
+              <path d="M8 6l42 54-42 54" fill="none" stroke="currentColor" strokeWidth="14" strokeLinejoin="round" />
+            </svg>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={row.now} alt={`Agora: ${row.nowAlt}`} width={560} height={560} loading="lazy" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={row.after} alt={`Após o programa: ${row.afterAlt}`} width={560} height={560} loading="lazy" />
+          </div>
+        ))}
       </div>
 
       <div className={s.section}>
