@@ -6,27 +6,44 @@ import { PawIcon, Title } from "../ui";
 import type { Answers } from "@/lib/types";
 import { loadingTopics, pron } from "@/lib/personalize";
 import { T } from "@/lib/timing";
-import { OFFER } from "@/config/offer";
 
 
+const LOADING_TESTIMONIALS = [
+  { src: "/img/loading-depoimento-1.webp", w: 900, h: 420 },
+  { src: "/img/loading-depoimento-2.webp", w: 900, h: 383 },
+  { src: "/img/loading-depoimento-3.webp", w: 900, h: 589 },
+];
+
+/** Social proof under the bars: one testimonial card at a time, sliding slowly in an endless loop. */
 function Reviews() {
-  const list = OFFER.testimonials;
+  const n = LOADING_TESTIMONIALS.length;
   const [i, setI] = useState(0);
+  const [smooth, setSmooth] = useState(true);
   useEffect(() => {
-    if (list.length < 2) return;
-    const id = window.setInterval(() => setI((v) => (v + 1) % list.length), T.reviewsAutoplay);
+    const id = window.setInterval(() => {
+      setSmooth(true);
+      setI((v) => v + 1);
+    }, T.reviewsAutoplay);
     return () => window.clearInterval(id);
-  }, [list.length]);
-  if (!list.length) return null;
+  }, []);
+  // after sliding onto the cloned first card, jump back to the real one without animation
+  const onEnd = () => {
+    if (i >= n) {
+      setSmooth(false);
+      setI(0);
+    }
+  };
+  const loop = [...LOADING_TESTIMONIALS, LOADING_TESTIMONIALS[0]];
   return (
     <div className={s.reviews}>
-      <div className={s.track} style={{ transform: `translateX(calc(${-i} * (100% - 30px)))` }}>
-        {list.map((r) => (
-          <div key={r.author} className={s.slide}>
-            <p className={s.reviewAuthor}>{r.author}</p>
-            <p className={s.reviewTitle}>{r.title}</p>
-            <p className={s.reviewText}>{r.text}</p>
-          </div>
+      <div
+        className={s.track}
+        style={{ transform: `translateX(calc(${-i} * (100% + 16px)))`, transition: smooth ? undefined : "none" }}
+        onTransitionEnd={onEnd}
+      >
+        {loop.map((t, k) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img key={k} className={s.slide} src={t.src} alt="Depoimento de tutor de Shih Tzu" width={t.w} height={t.h} />
         ))}
       </div>
     </div>

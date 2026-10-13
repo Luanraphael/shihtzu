@@ -51,6 +51,6 @@ export const T = {
     popStagger: 180,
   },
 
-  /** reference-measured: loading testimonials carousel autoplay 4000 ms. */
-  reviewsAutoplay: 4000,
+  /** Testimonials under the loading bars: next card every 4.5 s (3 cards over the ~15.6 s loading). */
+  reviewsAutoplay: 4500,
 } as const;

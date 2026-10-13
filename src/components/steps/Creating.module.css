@@ -126,39 +126,21 @@
   }
 }
 
-/* testimonials carousel (only rendered with legit testimonials) */
+/* testimonials showcase under the bars (cards shown as-is, no background behind them) */
 .reviews {
-  margin-top: 32px;
+  margin-top: 28px;
   overflow: hidden;
+  padding: 0 20px;
 }
 .track {
+  align-items: flex-start;
   display: flex;
-  gap: 10px;
-  padding: 0 20px;
-  transition: transform 0.4s ease;
+  gap: 16px;
+  transition: transform 1.1s ease-in-out;
 }
 .slide {
-  background: var(--surface);
-  border-radius: 32px;
-  flex: 0 0 calc(100% - 40px);
-  padding: 24px 24px 20px;
-}
-.reviewAuthor {
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 20px;
-  margin-bottom: 10px;
-}
-.reviewTitle {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.045px;
-  line-height: 20px;
-  margin-bottom: 4px;
-}
-.reviewText {
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: -0.045px;
-  line-height: 20px;
+  display: block;
+  flex: 0 0 100%;
+  height: auto;
+  width: 100%;
 }
