@@ -915,3 +915,68 @@
   margin-top: 20px;
   width: 100%;
 }
+
+/* plan card: coupon badge on the left, explicit total on the right */
+.couponBadge {
+  align-items: center;
+  background: #e7f7ee;
+  border: 1.5px solid #3fbf7a;
+  border-radius: 999px;
+  color: #138a4e;
+  display: inline-flex;
+  font-family: var(--font-rounded);
+  font-size: 11.5px;
+  font-weight: 800;
+  gap: 4px;
+  letter-spacing: 0.1px;
+  line-height: 14px;
+  margin-top: 6px;
+  padding: 3px 4px 3px 7px;
+  white-space: nowrap;
+}
+.couponOff {
+  background: #ff3b1f;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 11px;
+  line-height: 14px;
+  padding: 1px 6px;
+}
+.priceTotal {
+  align-items: flex-end;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: center;
+}
+.priceFrom {
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 16px;
+}
+.priceFrom s {
+  text-decoration-color: #ff3b1f;
+  text-decoration-thickness: 1.5px;
+}
+.priceNowRow {
+  align-items: flex-start;
+  display: flex;
+  line-height: 1;
+}
+.priceBy {
+  align-self: center;
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 4px;
+}
+.cents {
+  font-family: var(--font-rounded);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 25px;
+}
+.optionSelected .cents {
+  color: var(--brand-primary);
+}

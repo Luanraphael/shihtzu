@@ -5,7 +5,7 @@ import { ArrowRight, Check, ChevronDown, ShieldCheck, Tag } from "lucide-react";
 import s from "./Paywall.module.css";
 import { useFunnel } from "@/lib/store";
 import { OFFER, type PlanConfig } from "@/config/offer";
-import { brlNumber, brl, chargedPrice, couponActive, linePrice, perDay } from "@/lib/pricing";
+import { brl, chargedPrice } from "@/lib/pricing";
 import { withTracking } from "@/lib/utm";
 import { track } from "../MetaPixel";
 
@@ -129,7 +129,8 @@ export function Paywall() {
     if (f.ready) track("ViewContent", { content_name: "oferta" });
   }, [f.ready]);
 
-  const active = couponActive(coupon, now, OFFER.countdown.enforce);
+  // The Greenn checkout links only carry the discounted price, so the page always shows it.
+  const active = true;
   const remaining = coupon?.expiresAt ? coupon.expiresAt - now : null;
   const [mm, ss] = mmss(remaining ?? OFFER.countdown.minutes * 60_000);
   const showTimer = OFFER.countdown.enabled && !!coupon;
@@ -182,7 +183,8 @@ export function Paywall() {
       <div className={s.options} role="radiogroup" aria-label="Planos">
         {plans.map((p) => {
           const isSel = p.id === selected.id;
-          const line = linePrice(p, active);
+          const price = chargedPrice(p, active);
+          const [whole, cents] = price.toFixed(2).split(".");
           return (
             <button
               key={p.id}
@@ -192,24 +194,33 @@ export function Paywall() {
               className={`${s.option} ${p.mostPopular ? s.optionPopular : ""} ${isSel ? s.optionSelected : ""}`}
               onClick={() => {
                 f.setPlan(p.id);
-                track("AddToCart", { content_name: p.title, value: chargedPrice(p, active), currency: OFFER.currency });
+                track("AddToCart", { content_name: p.title, value: price, currency: OFFER.currency });
               }}
             >
               {p.mostPopular && <span className={s.bestOffer}>O mais popular</span>}
               <span className={s.radio}>{isSel && <Check size={14} color="#fff" strokeWidth={3.5} />}</span>
               <span className={s.priceWrapper}>
                 <span className={s.priceTitle}>{p.title}</span>
-                <span className={s.price}>
-                  {active && <s>{brl(line.full)}</s>} {brl(line.now)}
-                </span>
-                {p.periodLabel && <span className={s.period}>{p.periodLabel}</span>}
+                {active && (
+                  <span className={s.couponBadge}>
+                    <Check size={12} strokeWidth={3.5} />
+                    Cupom aplicado
+                    <span className={s.couponOff}>-{OFFER.coupon.percent}%</span>
+                  </span>
+                )}
               </span>
-              <span className={s.priceDay}>
-                <span className={s.priceDayWrapper}>
+              <span className={s.priceTotal}>
+                {active && (
+                  <span className={s.priceFrom}>
+                    De <s>{brl(p.fullPrice)}</s>
+                  </span>
+                )}
+                <span className={s.priceNowRow}>
+                  {active && <span className={s.priceBy}>por</span>}
                   <span className={s.currency}>R$</span>
-                  <span className={s.amount}>{brlNumber(perDay(p, active))}</span>
+                  <span className={s.amount}>{whole}</span>
+                  <span className={s.cents}>,{cents}</span>
                 </span>
-                <span className={s.priceDayText}>por dia</span>
               </span>
             </button>
           );

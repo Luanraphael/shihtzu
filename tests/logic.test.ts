@@ -123,8 +123,9 @@ test("coupon is named after the dog", () => {
   assert.equal(couponCode(A(), now), "ShihTzu_out26");
 });
 
-test("plans: R$ 37 / 67 / 97 and the longer plan has the lower daily price", () => {
+test("plans: 1 mês R$ 27, 3 meses R$ 37, 6 meses R$ 47 (60% off the full price)", () => {
   const [a, b, c] = OFFER.plans;
-  assert.deepEqual([a.discountedPrice, b.discountedPrice, c.discountedPrice], [37, 67, 97]);
-  assert.ok(perDay(a, true) > perDay(b, true) && perDay(b, true) > perDay(c, true));
+  assert.deepEqual([a.title, b.title, c.title], ["Plano de 1 Mês", "Plano de 3 Meses", "Plano de 6 Meses"]);
+  assert.deepEqual([a.discountedPrice, b.discountedPrice, c.discountedPrice], [27, 37, 47]);
+  assert.deepEqual([a.fullPrice, b.fullPrice, c.fullPrice], [67.5, 92.5, 117.5]);
 });
