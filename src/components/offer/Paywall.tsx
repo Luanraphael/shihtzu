@@ -388,18 +388,6 @@ export function Paywall() {
         </div>
       </section>
 
-      <div className={s.support}>
-        <h3>Tem alguma dúvida?</h3>
-        <p>É só escrever para nós em</p>
-        <a href={`mailto:${OFFER.brand.supportEmail}`}>{OFFER.brand.supportEmail}</a>
-      </div>
-
-      <footer className={s.footer}>
-        <p>{OFFER.brand.companyLine}</p>
-        <p>
-          <a href={OFFER.brand.termsUrl}>Termos de Uso</a> · <a href={OFFER.brand.privacyUrl}>Política de Privacidade</a>
-        </p>
-      </footer>
     </main>
   );
 }
