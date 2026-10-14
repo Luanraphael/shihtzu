@@ -68,8 +68,8 @@ export const OFFER = {
       discountedPrice: 27,
       periodLabel: null,
       mostPopular: false,
-      checkoutUrl: "https://payfast.greenn.com.br/redirect/797602",
-      checkoutUrlNoDiscount: "https://payfast.greenn.com.br/redirect/797602",
+      checkoutUrl: "https://payfast.greenn.com.br/197927/offer/76ald8?ch_id=144410",
+      checkoutUrlNoDiscount: "https://payfast.greenn.com.br/197927/offer/76ald8?ch_id=144410",
     },
     {
       id: "plan4w",
@@ -80,8 +80,8 @@ export const OFFER = {
       discountedPrice: 37,
       periodLabel: null,
       mostPopular: true,
-      checkoutUrl: "https://payfast.greenn.com.br/redirect/797603",
-      checkoutUrlNoDiscount: "https://payfast.greenn.com.br/redirect/797603",
+      checkoutUrl: "https://payfast.greenn.com.br/197924/offer/PZpeLX?ch_id=144409",
+      checkoutUrlNoDiscount: "https://payfast.greenn.com.br/197924/offer/PZpeLX?ch_id=144409",
     },
     {
       id: "plan12w",
@@ -92,8 +92,8 @@ export const OFFER = {
       discountedPrice: 47,
       periodLabel: null,
       mostPopular: false,
-      checkoutUrl: "https://payfast.greenn.com.br/redirect/797604",
-      checkoutUrlNoDiscount: "https://payfast.greenn.com.br/redirect/797604",
+      checkoutUrl: "https://payfast.greenn.com.br/197928/offer/Dc7j1H?ch_id=144411",
+      checkoutUrlNoDiscount: "https://payfast.greenn.com.br/197928/offer/Dc7j1H?ch_id=144411",
     },
   ] satisfies PlanConfig[],
 
